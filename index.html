@@ -319,5 +319,23 @@
       const s2=document.createElement("script"); s2.src="https://accounts.google.com/gsi/client"; s2.onload=gisLoaded; document.body.appendChild(s2);
     })();
   </script>
+  
+  <hr>
+<div style="text-align:center;">
+  <button id="resetProgress" style="padding:8px 12px;margin:4px;">Reset Progress</button>
+</div>
+
+<script>
+document.getElementById("resetProgress").addEventListener("click", () => {
+  if (confirm("Reset your PFC streak and progress?")) {
+    localStorage.removeItem("streak");
+    localStorage.removeItem("lastComplete");
+    document.getElementById("streak").textContent = 0;
+    document.getElementById("progress").value = 0;
+    alert("Progress reset. Begin your next discipline cycle clean.");
+  }
+});
+</script>
+
 </body>
 </html>
