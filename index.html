@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Trading PFC Protocol</title>
+  <style>
+    :root {
+      --bg-color: #121212;
+      --card-bg: #1e1e1e;
+      --text-color: #e5c97b;
+      --accent: #d4af37;
+      --border: rgba(212,175,55,0.25);
+      --highlight: rgba(212,175,55,0.1);
+    }
+    * {margin:0;padding:0;box-sizing:border-box;}
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      padding: 18px;
+      line-height: 1.7;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    main {max-width: 720px; width:100%;}
+    h1,h2,h3,h4 {text-align:center;text-shadow:0 0 12px rgba(212,175,55,0.3);}
+    h1 {font-size: clamp(1.6rem,5vw,2.4rem);margin-top:0.5em;}
+    h2 {font-size: clamp(1.2rem,4vw,1.6rem);margin-top:1.5em;}
+    h3 {font-size: clamp(1.05rem,3vw,1.3rem);margin-top:1.2em;}
+    p,li {font-size: clamp(0.9rem,2.5vw,1rem);margin-bottom:0.5em;}
+    ul,ol {margin-left:1.2em;}
+    hr {border:none;border-top:1px solid var(--border);margin:1.8em 0;}
+    section {margin-bottom:1em;}
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    strong {color: var(--accent);}
+    .checklist label {display:block;margin-bottom:0.4em;cursor:pointer;}
+    input[type="checkbox"] {margin-right:0.5em;accent-color: var(--accent);}
+    .state-check {
+      background: var(--highlight);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.8em;
+      margin: 1em 0;
+      text-align:center;
+    }
+    select {
+      background: var(--card-bg);
+      color: var(--text-color);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.3em;
+    }
+    progress {
+      width: 100%;
+      height: 10px;
+      border-radius: 5px;
+      overflow:hidden;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+    }
+    progress::-webkit-progress-value {background-color: var(--accent);}
+    details {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card-bg);
+      margin: 1em 0;
+      padding: 0.8em;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--accent);
+    }
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding-left: 1em;
+      margin: 1em 0;
+      color: #d9c87f;
+      font-style: italic;
+    }
+    .affirm {
+      text-align:center;
+      border-top:1px solid var(--border);
+      margin-top:2em;
+      padding-top:1em;
+      animation:pulse 6s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0% {text-shadow:0 0 10px rgba(212,175,55,0.2);}
+      50% {text-shadow:0 0 20px rgba(212,175,55,0.4);}
+      100% {text-shadow:0 0 10px rgba(212,175,55,0.2);}
+    }
+    @media (max-width:600px){
+      body {padding: 14px;}
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Daily Trading PFC Protocol</h1>
+    <p style="text-align:center;">Dominate the Amygdala • Strengthen the Prefrontal Cortex • Trade with Calm Precision</p>
+
+    <div class="state-check">
+      <p><strong>Emotional Status:</strong></p>
+      <select id="stateSelect">
+        <option value="calm">😌 Calm</option>
+        <option value="alert">😐 Alert</option>
+        <option value="impulsive">😠 Impulsive</option>
+      </select>
+    </div>
+
+    <div class="card" id="streakCard">
+      <p><strong>PFC Discipline Streak:</strong> <span id="streak">0</span> days</p>
+      <progress id="progress" value="0" max="90"></progress>
+    </div>
+
+    <h2>The Goal</h2>
+    <p>Transform yourself from an <strong>amygdala-driven trader</strong> to a <strong>PFC-dominant trader</strong>. This protocol rewires your brain through repetition and reflection.</p>
+
+    <hr>
+
+    <details open>
+      <summary>Phase 1: Pre-Market (10 min)</summary>
+      <ul>
+        <li>60s of 4–4–6 breathing to reduce cortisol</li>
+        <li>Review plan (entries, stops, risk, targets, trade count)</li>
+        <li>Identify emotional weak spots</li>
+        <li>Validate plan with your PFC Guide before trading</li>
+      </ul>
+      <div class="checklist" id="preMarketList">
+        <label><input type="checkbox">Breathwork complete</label>
+        <label><input type="checkbox">Plan reviewed & written</label>
+        <label><input type="checkbox">Amygdala alerts identified</label>
+        <label><input type="checkbox">GPT validation done</label>
+      </div>
+    </details>
+
+    <details>
+      <summary>Phase 2: During Market</summary>
+      <ul>
+        <li>Pause 60s before trade; confirm setup</li>
+        <li>After any loss → 60-minute rule before next trade</li>
+        <li>Ask: “Does this meet my plan, or is it FOMO?”</li>
+        <li>Position size ≤2% risk per trade</li>
+        <li>High volatility → halve risk, fewer trades</li>
+      </ul>
+      <div class="checklist" id="marketList">
+        <label><input type="checkbox">Pause before trade</label>
+        <label><input type="checkbox">Confirm criteria met</label>
+        <label><input type="checkbox">Risk ≤2%</label>
+        <label><input type="checkbox">60-min rule after loss</label>
+        <label><input type="checkbox">No FOMO/Overtrades</label>
+      </div>
+    </details>
+
+    <details>
+      <summary>Phase 3: Post-Market (15 min)</summary>
+      <ul>
+        <li>Journal emotions & logic (PFC vs Amygdala)</li>
+        <li>Weekly audit: win rate by decision type</li>
+        <li>GPT reflection: identify triggers</li>
+        <li>Close charts; allow recovery sleep</li>
+      </ul>
+      <div class="checklist" id="postMarketList">
+        <label><input type="checkbox">Journal complete</label>
+        <label><input type="checkbox">Emotions logged</label>
+        <label><input type="checkbox">GPT reflection done</label>
+        <label><input type="checkbox">Charts closed for sleep</label>
+      </div>
+    </details>
+
+    <blockquote>Imagine your 6-month-future self reviewing today’s trades.  
+    What decision will they thank you for?</blockquote>
+
+    <div class="affirm">
+      <p>“Your discomfort today is cortical growth in disguise. Every pause is a synaptic repetition.”</p>
+    </div>
+  </main>
+
+  <script>
+    // Checklist persistence
+    const lists = ['preMarketList','marketList','postMarketList'];
+    lists.forEach(id=>{
+      const list = document.getElementById(id);
+      list.querySelectorAll('input[type="checkbox"]').forEach((box,i)=>{
+        const key = `${id}_${i}`;
+        box.checked = localStorage.getItem(key)==='true';
+        box.addEventListener('change',()=>{
+          localStorage.setItem(key, box.checked);
+          updateStreak();
+        });
+      });
+    });
+
+    // Emotional state persistence
+    const stateSelect = document.getElementById('stateSelect');
+    stateSelect.value = localStorage.getItem('state') || 'calm';
+    stateSelect.addEventListener('change',()=>{
+      localStorage.setItem('state', stateSelect.value);
+    });
+
+    // Streak logic
+    function updateStreak(){
+      const totalBoxes = document.querySelectorAll('input[type="checkbox"]').length;
+      const checkedBoxes = [...document.querySelectorAll('input[type="checkbox"]:checked')].length;
+      const allChecked = totalBoxes === checkedBoxes;
+      if(allChecked){
+        const today = new Date().toDateString();
+        if(localStorage.getItem('lastComplete') !== today){
+          let streak = parseInt(localStorage.getItem('streak')||0);
+          localStorage.setItem('streak', ++streak);
+          localStorage.setItem('lastComplete', today);
+        }
+      }
+      const streak = parseInt(localStorage.getItem('streak')||0);
+      document.getElementById('streak').textContent = streak;
+      document.getElementById('progress').value = Math.min(streak,90);
+    }
+    updateStreak();
+  </script>
+
+  <!-- === Google Drive Sync Module === -->
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script src="https://accounts.google.com/gsi/client"></script>
+  <script>
+    const CLIENT_ID  = "194104309420-4k0mjs6pn4adgrs8ja2m4a7sd1n12i3h.apps.googleusercontent.com";
+    const API_KEY    = "AIzaSyATh1O81CYOi91m_WHzk7eWJnaCJuHQvJM";
+    const SCOPES     = "https://www.googleapis.com/auth/drive.file";
+    const DISCOVERY  = "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest";
+    let tokenClient, gapiInited = false, gisInited = false;
+
+    function gapiLoaded() { gapi.load('client', initializeGapiClient); }
+    async function initializeGapiClient() {
+      await gapi.client.init({ apiKey: API_KEY, discoveryDocs: [DISCOVERY] });
+      gapiInited = true; maybeEnableButtons();
+    }
+    function gisLoaded() {
+      tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID, scope: SCOPES, callback: ""
+      });
+      gisInited = true; maybeEnableButtons();
+    }
+    function maybeEnableButtons() {
+      if (gapiInited && gisInited)
+        document.getElementById("signin_button").style.display = "inline-block";
+    }
+    function handleAuthClick() {
+      tokenClient.callback = async (resp) => {
+        if (resp.error) throw resp;
+        document.getElementById("signin_button").style.display = "none";
+        document.getElementById("signout_button").style.display = "inline-block";
+        document.getElementById("saveDrive").disabled = false;
+        document.getElementById("loadDrive").disabled = false;
+        await autoLoad();
+      };
+      tokenClient.requestAccessToken({prompt: "consent"});
+    }
+    function handleSignoutClick() {
+      const token = gapi.client.getToken();
+      if (token) {
+        google.accounts.oauth2.revoke(token.access_token);
+        gapi.client.setToken("");
+      }
+      document.getElementById("signin_button").style.display = "inline-block";
+      document.getElementById("signout_button").style.display = "none";
+    }
+    async function saveToDrive() {
+      const content = JSON.stringify(localStorage);
+      const blob = new Blob([content], { type: "application/json" });
+      const metadata = { name: "pfc_trading_log.json", mimeType: "application/json" };
+      const form = new FormData();
+      form.append("metadata", new Blob([JSON.stringify(metadata)], {type: "application/json"}));
+      form.append("file", blob);
+      await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
+        method: "POST",
+        headers: new Headers({ "Authorization": "Bearer " + gapi.client.getToken().access_token }),
+        body: form
+      });
+      alert("✅ Data saved to Google Drive!");
+    }
+    async function loadFromDrive() {
+      const res = await gapi.client.drive.files.list({
+        q: "name='pfc_trading_log.json' and trashed=false",
+        fields: "files(id)"
+      });
+      if (!res.result.files?.length) { alert("No saved file found."); return; }
+      const fileId = res.result.files[0].id;
+      const response = await gapi.client.drive.files.get({fileId, alt:"media"});
+      const parsed = JSON.parse(response.body);
+      Object.entries(parsed).forEach(([k,v]) => localStorage.setItem(k,v));
+      alert("✅ Data loaded from Drive. Refresh to apply.");
+    }
+    async function autoLoad() { try { await loadFromDrive(); } catch(e) { console.warn(e); } }
+    document.addEventListener("DOMContentLoaded", () => {
+      const wrap = document.createElement("div");
+      wrap.style.textAlign = "center";
+      wrap.innerHTML = `
+        <hr><h3>☁️ Google Drive Sync</h3>
+        <button id="signin_button" style="display:none;padding:8px;margin:4px;">Sign In</button>
+        <button id="signout_button" style="display:none;padding:8px;margin:4px;">Sign Out</button>
+        <button id="saveDrive" disabled style="padding:8px;margin:4px;">Save to Drive</button>
+        <button id="loadDrive" disabled style="padding:8px;margin:4px;">Load from Drive</button>`;
+      document.body.appendChild(wrap);
+      document.getElementById("signin_button").onclick = handleAuthClick;
+      document.getElementById("signout_button").onclick = handleSignoutClick;
+      document.getElementById("saveDrive").onclick = saveToDrive;
+      document.getElementById("loadDrive").onclick = loadFromDrive;
+    });
+    (function loadLibs(){
+      const s1=document.createElement("script"); s1.src="https://apis.google.com/js/api.js"; s1.onload=gapiLoaded; document.body.appendChild(s1);
+      const s2=document.createElement("script"); s2.src="https://accounts.google.com/gsi/client"; s2.onload=gisLoaded; document.body.appendChild(s2);
+    })();
+  </script>
+</body>
+</html>
